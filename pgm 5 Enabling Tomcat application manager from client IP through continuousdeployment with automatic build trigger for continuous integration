@@ -1,0 +1,35 @@
+Prerequisite : Jenkins.war, java 8, mobaxtrem client app, aws, Tomcat server setup by ec2, gi thub
+Setting up a Maven Project
+ 
+1.	Open Jenkins and create new item with maven option select ok
+2.	From your github repo copy the https url and paste it in Jenkins job created by selecting git
+3.	Under build you will be directed with pom.xml and provide clean install package
+4.	Go to build now and console wil be success
+5.	Now open your AWS and copy the setup servers public IP to mobaxterm client
+6.	Remote hoste: Public IP (AWS) ans username :ec2-user
+Advanced settings: select the key generated
+7.	After the ec2 instance is enabled at your terminal, switch to root ($ sudo su -)
+$ cd /opt
+$ cd apache folder
+$ls
+$cd bin 
+$./startup.sh
+8.	Access the browser with IP publicip:8080 - this leads to tomcat server page . Note: only if you have configured the server
+9.	You can change the port number of tomcat server to 8090 by selecting 
+$cd conf
+$vi server.xml -> here change the 8080 number to 8090
+10.	Got to Jenkins and your project configuration , in post steps no war file will be found to enable it got to step 11
+11.	Now go back to your jenkins and install deploy to container plugin 
+12.	Got to manage Jenkins and mange credentials, now add credentials , credentials can be found at client, Type the command as  
+$ cat tomcatusers.xml
+13.	Now in Jenkins credentials add the contents both password and username as deployer and description as tomcat_credentials even id is same as description
+14.	Got to step 10 and repeat the procedure to find war content
+15.	Now war is found and click on it and input the following
+ 
+16.	In add container select tomcat 8
+ 
+And save the content 
+17.	Now go to client app and type in this
+$ cd webpp (under apache directory)
+$ ls 
+$ls –ltr

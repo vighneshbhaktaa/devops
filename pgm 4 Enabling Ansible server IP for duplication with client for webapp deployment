@@ -1,0 +1,113 @@
+First step up is 
+Launching of two ec2 instances one consisting of ansible host and control server respectively
+Note: for security group you need to enable only ssh 22 
+And launch the two instances
+
+Open client mobaxterm SSH
+Copy  public IP of host and control server ansible from AWS that have recently launced
+
+In Control Server follow this procedure
+
+                                $sudo su –
+                                $ yum update
+
+                                In ansible client
+                                $sudo su –
+                                $ yum update
+
+In Control Server follow this procedure
+                                $ yum install ansible
+                                $ rpm –Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+                                $ yum install ansible
+                                $ ansible --version
+
+                                $ useradd  ansadmin
+                                $ passwd ansadmin
+                                Provide the password of your own in the password section
+
+                                $ yum install ansible
+                                $ rpm –Uvh https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+                                $ yum install ansible
+                                $ ansible –version
+
+In ansible client
+
+                                $ useradd  ansadmin
+                                $ passwd ansadmin
+                                Provide the password of your own in the password section
+
+In Control Server
+                                $ visudo
+In ansible client
+
+                                $ visudo
+In Control Server
+
+                                $ cd /etc/ssh
+                                $ ls
+                                $ vi sshd_config
+                                Type in the following by enabling the password authentication  has yes
+
+                                $ service sshd restart
+
+In ansible client
+                                $ cd /etc/ssh
+                                $ ls
+                                $ vi sshd_config
+                                Type in the following by enabling the password authentication  has yes
+
+                                $ service sshd restart
+
+                                Now right click on the ansible control server tab in your client click on duplicate tab. This will open a duplicate tab and features the replication of ansible server
+
+
+In Duplicate control server tab (here you need to generate ssh)
+                                $ sudo su ansadmin
+                                 $ssh-keygen
+                                Press enter don’t type password
+                                $ls –la
+                                There should be file by name .ssh or else error
+
+Go to ansible client
+                                $ ifconfig
+                                This gives you the private ip of your ansible  client and copy this IP 
+
+In Duplicate control server tab
+                                $ cd .ssh
+                                $ ls
+                                $ ssh-copy-id  <private ip of ansible  client> //this is how you deploy several clients in to    server control area dynamically//
+                                Below snap shot result with copy without authentication 
+                                Note: if it asks the password than its an error
+
+To come out of client ip 
+                                $ ssh <client private ip>
+                                $ exit
+                                Connection will be closed
+                                To execute and deploy features of ansible configuration in devops strategy , in  duplicate server  follow the procedure
+                                $ sudo vi /etc/ansible/hosts
+                                For reference we a have taken an example IP , you go to type your  respective host/client IP
+                                $ ansible all –m ping
+
+
+                                $ls
+
+                                $ cd ..
+                                $ls
+                                $pwd
+                                $cat  >  hello.html
+                                <h1> hello welcome .. welcome to devops </h1>
+                                $ls
+                                Displays hello.html file
+
+
+In your ansible client
+                                $cd /home/ansadmin
+                                $ls
+                                $pwd
+                                $ls
+                                 Go back to your control server
+                                $ ansible all –m copy “src=/home/amsadmin/hello.html  dest=/home/ansadmin”
+
+
+In your client
+                                $ls -l

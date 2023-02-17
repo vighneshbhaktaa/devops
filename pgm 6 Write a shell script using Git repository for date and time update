@@ -1,0 +1,31 @@
+#!/bin/bash
+
+# Set the application name and version
+APP_NAME="my-app"
+APP_VERSION="1.0.0"
+
+# Set the deployment directory
+DEPLOY_DIR="/opt/${APP_NAME}-${APP_VERSION}"
+
+# Clone the Git repository to get the latest version
+git clone https://github.com/my-username/my-app.git /tmp/my-app
+
+# Update the date and time in the application files
+DATE_TIME=$(date +"%Y-%m-%d %H:%M:%S")
+sed -i "s/{{DATETIME}}/$DATE_TIME/g" /tmp/my-app/index.html
+
+# Stop the JBoss server
+sudo service jboss stop
+
+# Remove the old deployment directory
+sudo rm -rf $DEPLOY_DIR
+
+# Create the new deployment directory and copy the application files
+sudo mkdir -p $DEPLOY_DIR
+sudo cp -R /tmp/my-app/* $DEPLOY_DIR/
+
+# Start the JBoss server
+sudo service jboss start
+
+# Cleanup
+rm -rf /tmp/my-app

@@ -1,0 +1,39 @@
+$git init                  //this initializes the library and assign the work of directory
+$git clone                  // maps the entire repository and features the significant of working directory
+
+Synchronizing repositories 
+
+Commands 
+$git remote add  origin <link>                  //extract only the https link from your created git hub repository
+                                                Now for pulling the contents from remote repository perform 
+$git pull origin main/master                    // this enables the items of remote repo to  local directory created  
+                                                                    folder//
+                                                Changes to local directory
+                                                Now create the text file in your local repository and check the status in your git bash
+                                                Command
+$git status                                     //update the status of the created file in your working directory with red high light
+                                                Now add the contents to stating area by typing
+$git add <createdfile.txt.>
+ 
+                                                  After this commit the file by operation of commit
+$git commit                                        //this commit total commits corresponding to the created files//
+
+                                                  Creating the branches 
+
+                                                  Commands
+$git branch new_branch                            //this creates newer branch by adding the new one
+$git new_branch checkout                             // take the working directory from master to new branch
+                                                  Now in your local directory create few more file and edit the file of the earlier created
+$git status
+$git add .                                        //this add total files on the local directory 
+                                                  Again checkout to master
+$git checkout master  
+                                                  Edit the file in your local repo
+                                                  It should not list the files of new branch
+                                                  Check by typing 
+$git checkout new_branch
+$ls
+
+                                                Push your local directory files to remote repository
+$git push origin master/main
+                                                  All the files need to be popped in your remote github repository
